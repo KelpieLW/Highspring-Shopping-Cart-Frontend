@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .text-standard {
+    @apply text-lg text-gray-800;
+  }
+
+  .text-subtitle {
+    @apply text-2xl text-gray-700 font-extrabold;
+  }
+
+  .text-title {
+    @apply text-4xl text-white font-bold;
+  }
+
+  .regular-button {
+    @apply text-2xl text-white rounded-full bg-green-300 p-1 hover:bg-green-700 transition font-bold;
+  }
+
+  .text-money {
+    @apply text-lg font-black tracking-wide;
+  }
+}
