@@ -20,6 +20,16 @@ function OrderItemsGrid() {
       .finally(setLoadingFlag(false));
   };
 
+  const handleCheckout = () => {
+    fetch(`${API_BASE_URL}/v1/api/orderItems/checkout`)
+      .then((res) => res.json())
+      .then((order) => {
+        localStorage.setItem("latestOrder", JSON.stringify(order));
+        navigate("/Checkout");
+      })
+      .catch((err) => console.error("Error fetching order", err));
+  };
+
   useEffect(fetchOrderItems, []);
   return (
     <div className="max-w-7xl">
@@ -65,7 +75,7 @@ function OrderItemsGrid() {
       <div className="grid grid-cols-5 gap-x-2 items-center border-b py-4 ">
         <button
           className="col-start-4 regular-button max-w-48"
-          onClick={() => navigate("/Checkout")}
+          onClick={handleCheckout}
         >
           Checkout
         </button>
