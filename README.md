@@ -6,9 +6,34 @@ React Frontend UI for a simple Shopping Cart project, you can visualize, items d
 
 ## Instructions
 
-The link to access the UI can be found bellow.
+### Prerequisites
 
-> localhost:5173/ShoppingCart
+- Docker installed (https://www.docker.com/get-started)
+- Backend repository running on `http://localhost:8080` (see backend README)
+
+1. Clone the repository.
+
+```
+git clone https://github.com/KelpieLW/Highspring-Shopping-Cart-Frontend
+cd Highspring-Shopping-Cart-Frontend
+```
+
+2. Build the docker container.
+
+```
+docker build -t frontend .
+```
+
+3. Run the docker container.
+
+```
+docker run -p 5173:80 frontend
+```
+
+4. Access to the web page.
+
+- Open your browser and go to: http://localhost:5173/shoppingCart
+- Make sure the backend container is running first, otherwise the shopping cart will not display any items.
 
 Once in the application, you can add items through the add orderItem endpoint, for more information visit the swagger documeantation in the [Backend Repositroy]("https://github.com/KelpieLW/Highspring-Shopping-Cart-App").
 

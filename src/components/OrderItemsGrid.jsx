@@ -70,7 +70,7 @@ function OrderItemsGrid() {
           <img
             className="w-44 h-auto object-cover"
             key={orderItemElement.orderItem.name}
-            src={`${API_BASE_URL}${orderItemElement.orderItem.itemImageUrl}/`}
+            src={`${API_BASE_URL}${orderItemElement.orderItem.itemImageUrl}`}
           />
 
           <p className="text-standard">{orderItemElement.orderItem.name}</p>
