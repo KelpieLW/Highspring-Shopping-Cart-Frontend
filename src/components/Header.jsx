@@ -1,3 +1,9 @@
+/**
+ * Basic header for the Shoppingcart
+ * @param {*} param0 This parameter defines the tittle in the top left of the header
+ * @returns Customized header
+ */
+
 function Header({ headerText }) {
   return (
     <div className="flex items-center justify-between bg-yellow-400 p-3">

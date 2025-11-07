@@ -3,10 +3,23 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PackagePicture from "../assets/package.png";
 
+/**
+ * Displays order summary after checkout.
+ *
+ * Shows subtotal, total price, and tax information
+ * for the latest completed order stored in localStorage.
+ * Allows starting a new shopping session by clearing the cart.
+ *
+ * @component
+ * @returns {JSX.Element} Checkout summary with totals and reset option.
+ */
 function CheckoutGrid() {
+  /** Base URL for API requests. */
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const navigate = useNavigate();
   const [order, setOrder] = useState(null);
+
+  /** Loads the saved order from localStorage on mount. */
   useEffect(() => {
     const savedOrder = localStorage.getItem("latestOrder");
     if (savedOrder) {
@@ -32,7 +45,10 @@ function CheckoutGrid() {
           <div className="flex flex-col gap-6">
             <div className="flex gap-2 text-yellow-700">
               <BadgeInfo />
-              <p>Remember, final prices are tied to local taxation</p>
+              <p className="max-w-md">
+                Remember, final prices are tied to local taxation, this purchase
+                has a %{order.taxValue.toFixed(4) * 100} tax rate
+              </p>
             </div>
 
             <p className="font-bold tracking-wider text-center text-2xl">
@@ -41,7 +57,12 @@ function CheckoutGrid() {
             <p className="text-money text-green-600 text-2xl">
               {order.subTotalPrice.toFixed(2)} $
             </p>
-
+            <p className="font-bold tracking-wider text-center text-2xl">
+              Sales Tax Ammount{" "}
+            </p>
+            <p className="text-money text-green-600 text-2xl">
+              {(order.totalPrice - order.subTotalPrice).toFixed(2)} $
+            </p>
             <p className="font-bold tracking-wider text-center text-2xl">
               Total{" "}
             </p>

@@ -1,5 +1,9 @@
 import Header from "../components/Header";
 import OrderItemsGrid from "../components/OrderItemsGrid";
+/**
+ * Shopping cart page, shows the basic item information of a purchase
+ * @returns Basic header and shopping cart grid with each item information
+ */
 function CartPage() {
   return (
     <div>

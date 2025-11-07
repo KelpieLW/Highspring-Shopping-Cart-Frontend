@@ -1,16 +1,23 @@
-# React + Vite
+# Highspring Shopping Cart Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React Frontend UI for a simple Shopping Cart project, you can visualize, items details, quantities and checkout orders to see their subtotal and total values
+![Static Badge](https://img.shields.io/badge/React-19.2.0-blue)
 
-Currently, two official plugins are available:
+## Instructions
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The link to access the UI can be found bellow.
 
-## React Compiler
+> localhost:5173/ShoppingCart
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Once in the application, you can add items through the add orderItem endpoint, for more information visit the swagger documeantation in the [Backend Repositroy]("https://github.com/KelpieLW/Highspring-Shopping-Cart-App").
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- All the items added to the shopping cart can be seen after refreshing the page in the refresh button.
+  ![1](./screenshots/1.png)
+- All the item details: picture, name, description, quantity and price (discount applied) are available in the ShoppingCart page.
+  ![2](./screenshots/2.png)
+- The subtotal of your shopping cart can be seen under your products list.
+- You can perform a checkout of your items pressing the "Checkout" button, this will create the order and redirect you to the "Checkout" page.
+  ![3](./screenshots/3.png)
+- Total and subtotal values can be seen in the Checkout page, the total is calculated after applying the tax rate over the subtotal value.
+  ![4](./screenshots/4.png)
+- You can restart the shopping cart and return to the first ShoppingCart page by pressing the "New Shopping Cart Session" button.

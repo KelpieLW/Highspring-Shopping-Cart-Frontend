@@ -1,8 +1,17 @@
 import { RefreshCw } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+/**
+ * Displays all order items in a grid and allows checkout.
+ *
+ * Fetches data from the backend, shows items with price and quantity,
+ * allows refreshing the list, and performs checkout to create an order.
+ *
+ * @component
+ * @returns {JSX.Element} Order items grid with subtotal and checkout button.
+ */
 function OrderItemsGrid() {
+  /** Base URL for API requests. */
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const navigate = useNavigate();
   const [orderItems, setItems] = useState([]);
@@ -11,6 +20,7 @@ function OrderItemsGrid() {
   const subTotal = () =>
     orderItems.reduce((acc, el) => acc + el.orderItem.price * el.quantity, 0);
 
+  /** Fetches order items from the API. */
   const fetchOrderItems = () => {
     setLoadingFlag(true);
     fetch(`${API_BASE_URL}/v1/api/orderItems`)
@@ -19,7 +29,7 @@ function OrderItemsGrid() {
       .catch((err) => console.error("Error fetching Order Items", err))
       .finally(setLoadingFlag(false));
   };
-
+  /** Performs checkout and redirects to the checkout page. */
   const handleCheckout = () => {
     fetch(`${API_BASE_URL}/v1/api/orderItems/checkout`)
       .then((res) => res.json())
@@ -43,7 +53,8 @@ function OrderItemsGrid() {
         </button>
       </div>
 
-      <div className="grid grid-cols-5 gap-x-8 items-center border-b-2 border-blue-950 py-2  max-w-full justify-items-center">
+      <div className="grid grid-cols-6 gap-x-8 items-center border-b-2 border-blue-950 py-2  max-w-full justify-items-center">
+        <h2 className="text-subtitle">Category</h2>
         <h2 className="text-subtitle">Item</h2>
         <h2 className="text-subtitle">Name</h2>
         <h2 className="text-subtitle">Description</h2>
@@ -52,7 +63,10 @@ function OrderItemsGrid() {
       </div>
 
       {orderItems.map((orderItemElement) => (
-        <div className="grid grid-cols-5 gap-x-8 items-center border-b py-4 justify-items-center">
+        <div className="grid grid-cols-6 gap-x-8 items-center border-b py-4 justify-items-center">
+          <p className="text-standard">
+            {orderItemElement.orderItem.itemCategory.name}
+          </p>
           <img
             className="w-44 h-auto object-cover"
             key={orderItemElement.orderItem.name}
@@ -74,12 +88,17 @@ function OrderItemsGrid() {
       ))}
       <div className="grid grid-cols-5 gap-x-2 items-center border-b py-4 ">
         <button
-          className="col-start-4 regular-button max-w-48"
+          disabled={orderItems.length == 0}
+          className={`col-start-4 regular-button max-w-48 ${
+            orderItems.length === 0 ? "opacity-50 cursor-not-allowed" : ""
+          }`}
           onClick={handleCheckout}
         >
           Checkout
         </button>
-        <p className="col-start-5 text-money">Subtotal: {subTotal()} $</p>
+        <p className="col-start-5 text-money">
+          Subtotal: {subTotal().toFixed(2)} $
+        </p>
       </div>
     </div>
   );
