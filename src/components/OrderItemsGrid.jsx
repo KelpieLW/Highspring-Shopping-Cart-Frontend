@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
  */
 function OrderItemsGrid() {
   /** Base URL for API requests. */
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
   const navigate = useNavigate();
   const [orderItems, setItems] = useState([]);
   const [loadingFlag, setLoadingFlag] = useState(false);

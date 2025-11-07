@@ -1,6 +1,7 @@
 # Highspring Shopping Cart Frontend
 
 React Frontend UI for a simple Shopping Cart project, you can visualize, items details, quantities and checkout orders to see their subtotal and total values
+
 ![Static Badge](https://img.shields.io/badge/React-19.2.0-blue)
 
 ## Instructions
